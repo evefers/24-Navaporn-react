@@ -9,20 +9,20 @@ const Home = () => {
         <h2 className="text-4xl font-bold text-black">React - Assessment</h2>
       </div>
 
-      <div className="flex sm:flex-row gap-4">
-        <Link 
-          to="/user" 
-          className="px-8 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-center"
-        >
-          User Home View
-        </Link>
-        <Link 
-          to="/admin" 
-          className="px-8 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors text-center"
-        >
-          Admin Home View
-        </Link>
-      </div>
+      <div className="flex justify-center gap-12 mb-12">
+              <Link 
+                to="/user" 
+                className="bg-white text-gray-900 font-bold py-4 px-8 rounded-lg shadow-md hover:bg-gray-50 transition-colors"
+              >
+                User Home View
+              </Link>
+              <Link 
+                to="/admin" 
+                className="bg-white text-gray-900 font-bold py-4 px-8 rounded-lg shadow-md hover:bg-gray-50 transition-colors"
+              >
+                Admin Home View
+              </Link>
+            </div>
     </div>
   );
 };

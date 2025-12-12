@@ -25,100 +25,109 @@ const AdminView = ({ employees, onAddEmployee, onDeleteEmployee }) => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Generation Thailand Home - Admin View</h1>
-      
-      <div className="flex justify-center gap-4 mb-8">
-        <Link to="/user" className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+    <div className="w-full max-w-6xl mx-auto px-4 py-12 font-sans">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-black mb-2">Generation Thailand</h1>
+        <h2 className="text-4xl font-bold text-black">Home - Admin View</h2>
+      </div>
+
+      <div className="flex justify-center gap-12 mb-12">
+        <Link
+          to="/user"
+          className="bg-white text-gray-900 font-bold py-4 px-8 rounded-lg shadow-md hover:bg-gray-50 transition-colors"
+        >
           User Home View
         </Link>
-        <Link to="/admin" className="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors">
+        <Link
+          to="/admin"
+          className="bg-white text-gray-900 font-bold py-4 px-8 rounded-lg shadow-md hover:bg-gray-50 transition-colors"
+        >
           Admin Home View
         </Link>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8 max-w-3xl mx-auto">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Create User Here</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Last Name:</label>
-            <input
-              type="text"
-              name="lastname"
-              value={formData.lastname}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Position:</label>
-            <input
-              type="text"
-              name="position"
-              value={formData.position}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-            />
-          </div>
-          <button 
-            type="submit" 
-            className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+      {/* Create User Form Section */}
+      <div className="w-full mb-12">
+        <h2 className="text-xl font-bold text-black mb-4">Create User Here</h2>
+
+        {/* Updated Form Layout: Flexbox ensures single row alignment */}
+        <form onSubmit={handleSubmit} className="flex sm:flex-row gap-4 w-full">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+            placeholder="Name"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded bg-white focus:outline-none focus:border-blue-500"
+          />
+          <input
+            type="text"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleInputChange}
+            required
+            placeholder="Last Name"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded bg-white focus:outline-none focus:border-blue-500"
+          />
+          <input
+            type="text"
+            name="position"
+            value={formData.position}
+            onChange={handleInputChange}
+            required
+            placeholder="Position"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded bg-white focus:outline-none focus:border-blue-500"
+          />
+          <button
+            type="submit"
+            className="px-10 py-2 bg-[#6366f1] text-white font-medium rounded hover:bg-[#5558dd] transition-colors whitespace-nowrap"
           >
             Save
           </button>
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <h2 className="text-xl font-semibold text-gray-800 p-6 pb-0">Table 1</h2>
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50 ">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-2 border-solid">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-2 border-solid">Last Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-2 border-solid">Position</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-2 border-solid">Action</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {employees && employees.length > 0 ? (
-              employees.map((employee) => (
-                <tr key={employee.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border-2 border-solid">{employee.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border-2 border-solid">{employee.lastname}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 border-2 border-solid">{employee.position}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-2 border-solid">
-                    <button
-                      onClick={() => onDeleteEmployee(employee.id)}
-                      className="text-red-600 hover:text-red-900"
-                    >
-                      Delete
-                    </button>
+      {/* Table Section */}
+      <div className="w-full">
+        <div className="text-gray-400 text-sm mb-2 ml-1">Table 1</div>
+        <div className="bg-white rounded overflow-hidden">
+          <table className="min-w-full border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700 border border-gray-200">Name</th>
+                <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700 border border-gray-200">Last Name</th>
+                <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700 border border-gray-200">Position</th>
+                <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700 border border-gray-200">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {employees && employees.length > 0 ? (
+                employees.map((employee) => (
+                  <tr key={employee.id} className="hover:bg-gray-50 bg-white">
+                    <td className="px-6 py-4 text-sm text-gray-900 border border-gray-200">{employee.name}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900 border border-gray-200">{employee.lastname}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900 border border-gray-200">{employee.position}</td>
+                    <td className="px-6 py-4 text-sm text-center border border-gray-200">
+                      <button
+                        onClick={() => onDeleteEmployee(employee.id)}
+                        className="text-red-500 font-bold hover:text-red-700"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4" className="px-6 py-8 text-center text-gray-500 border border-gray-200">
+                    No employees found
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4" className="px-6 py-8 text-center text-gray-500">
-                  No employees found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
